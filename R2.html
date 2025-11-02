@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ConnectHub | Login & Register</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      font-family: "Poppins", sans-serif;
+      background: linear-gradient(135deg, #0077b6, #00b4d8);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .container {
+      background: #fff;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+      width: 90%;
+      max-width: 800px;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .form-section {
+      width: 48%;
+      padding: 10px;
+      text-align: center;
+    }
+
+    h2 {
+      color: #0077b6;
+      margin-bottom: 15px;
+    }
+
+    input {
+      width: 90%;
+      padding: 10px;
+      margin: 8px 0;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+
+    button {
+      background: #0077b6;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 10px;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background: #023e8a;
+    }
+
+    .switch {
+      font-size: 0.9rem;
+      color: #333;
+      margin-top: 10px;
+      cursor: pointer;
+      text-decoration: underline;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+      }
+
+      .form-section {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- NGO Section -->
+    <div class="form-section">
+      <h2>NGO Login / Register</h2>
+
+      <form id="ngoForm">
+        <input type="text" id="ngoName" placeholder="NGO Name" required><br>
+        <input type="email" id="ngoEmail" placeholder="Email" required><br>
+        <input type="password" id="ngoPassword" placeholder="Password" required><br>
+        <button type="button" onclick="register('NGO')">Register</button>
+        <button type="button" onclick="login('NGO')">Login</button>
+      </form>
+    </div>
+
+    <!-- Donor Section -->
+    <div class="form-section">
+      <h2>Donor Login / Register</h2>
+
+      <form id="donorForm">
+        <input type="text" id="donorName" placeholder="Donor Name" required><br>
+        <input type="email" id="donorEmail" placeholder="Email" required><br>
+        <input type="password" id="donorPassword" placeholder="Password" required><br>
+        <button type="button" onclick="register('Donor')">Register</button>
+        <button type="button" onclick="login('Donor')">Login</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    // Register Function
+    function register(role) {
+      if (role === "NGO") {
+        const ngoName = document.getElementById("ngoName").value;
+        const ngoEmail = document.getElementById("ngoEmail").value;
+        const ngoPassword = document.getElementById("ngoPassword").value;
+
+        if (ngoName && ngoEmail && ngoPassword) {
+          localStorage.setItem("role", "NGO");
+          localStorage.setItem("ngoEmail", ngoEmail);
+          alert("NGO Registered Successfully!");
+          window.location.href = "N2.html";
+        } else {
+          alert("Please fill all NGO details");
+        }
+      } else if (role === "Donor") {
+        const donorName = document.getElementById("donorName").value;
+        const donorEmail = document.getElementById("donorEmail").value;
+        const donorPassword = document.getElementById("donorPassword").value;
+
+        if (donorName && donorEmail && donorPassword) {
+          localStorage.setItem("role", "Donor");
+          localStorage.setItem("donorEmail", donorEmail);
+          alert("Donor Registered Successfully!");
+          window.location.href = "D2.html";
+        } else {
+          alert("Please fill all Donor details");
+        }
+      }
+    }
+
+    // Login Function
+    function login(role) {
+      const storedRole = localStorage.getItem("role");
+
+      if (role === "NGO" && storedRole === "NGO") {
+        alert("NGO Login Successful!");
+        window.location.href = "N2.html";
+      } 
+      else if (role === "Donor" && storedRole === "Donor") {
+        alert("Donor Login Successful!");
+        window.location.href = "D2.html";
+      } 
+      else {
+        alert("User not registered or invalid credentials!");
+      }
+    }
+  </script>
+</body>
+</html>

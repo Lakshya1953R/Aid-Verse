@@ -1,0 +1,232 @@
+/* -------------------
+🌈 GLOBAL STYLES
+-------------------- */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #e3f2fd, #f1f8e9);
+  color: #333;
+  min-height: 100vh;
+}
+
+/* -------------------
+🏠 MAIN CONTAINERS
+-------------------- */
+.container {
+  background: #ffffff;
+  margin: 60px auto;
+  width: 90%;
+  max-width: 480px;
+  border-radius: 18px;
+  padding: 40px 30px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+header {
+  background: linear-gradient(90deg, #2196f3, #64b5f6);
+  color: white;
+  padding: 25px 0;
+  text-align: center;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+}
+
+header h1 {
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+
+header p {
+  font-size: 0.95rem;
+  opacity: 0.9;
+}
+
+/* -------------------
+🎯 ROLE SELECTION
+-------------------- */
+.role-buttons {
+  margin-top: 20px;
+}
+
+.role-buttons button {
+  margin: 10px;
+  padding: 12px 28px;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #42a5f5, #478ed1);
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.role-buttons button:hover {
+  background: linear-gradient(135deg, #1e88e5, #1976d2);
+  transform: translateY(-2px);
+}
+
+/* -------------------
+🧾 FORMS
+-------------------- */
+form {
+  margin-top: 25px;
+}
+
+form h2 {
+  color: #1565c0;
+  font-size: 1.4rem;
+  margin-bottom: 15px;
+}
+
+form input {
+  width: 85%;
+  padding: 12px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  transition: all 0.2s ease-in-out;
+}
+
+form input:focus {
+  border-color: #42a5f5;
+  outline: none;
+  box-shadow: 0 0 5px rgba(66, 165, 245, 0.4);
+}
+
+form button {
+  width: 85%;
+  padding: 12px;
+  margin-top: 10px;
+  background: linear-gradient(135deg, #66bb6a, #43a047);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+form button:hover {
+  background: linear-gradient(135deg, #388e3c, #2e7d32);
+  transform: scale(1.03);
+}
+
+.hidden {
+  display: none;
+}
+
+/* -------------------
+💚 DONOR PAGE
+-------------------- */
+.requests {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  padding: 30px;
+  margin: 20px auto;
+  width: 90%;
+}
+
+.ngo-card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 25px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.ngo-card h3 {
+  color: #1e88e5;
+  margin-bottom: 8px;
+}
+
+.ngo-card p {
+  color: #555;
+  font-size: 0.95rem;
+  margin-bottom: 12px;
+}
+
+.ngo-card button {
+  background: linear-gradient(135deg, #42a5f5, #478ed1);
+  color: white;
+  border: none;
+  padding: 8px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.ngo-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* -------------------
+📸 NGO DASHBOARD
+-------------------- */
+section {
+  margin: 30px auto;
+  width: 90%;
+  max-width: 800px;
+  background: #fff;
+  padding: 25px;
+  border-radius: 16px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+}
+
+section h2 {
+  color: #1e88e5;
+  margin-bottom: 15px;
+}
+
+.photos {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.photos img {
+  width: 150px;
+  height: 150px;
+  margin: 8px;
+  border-radius: 10px;
+  object-fit: cover;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+  transition: transform 0.2s;
+}
+
+.photos img:hover {
+  transform: scale(1.05);
+}
+
+#qrPreview {
+  width: 200px;
+  margin-top: 15px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+/* -------------------
+💰 EXPENSE SECTION
+-------------------- */
+.expenses ul {
+  list-style: none;
+  padding: 0;
+}
+
+.expenses li {
+  background: #e8f5e9;
+  padding: 12px;
+  border-radius: 8px;
+  margin: 6px 0;
+  color: #2e7d32;
+  font-weight: 500;
+}

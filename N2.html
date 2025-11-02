@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NGO Dashboard | ConnectHub</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .upload-section {
+      margin: 30px auto;
+      width: 90%;
+      max-width: 600px;
+      background: #fff;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    }
+
+    input[type="file"] {
+      display: block;
+      margin: 10px auto;
+    }
+
+    .photos img {
+      margin: 10px;
+      border-radius: 8px;
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
+    }
+
+    #qrPreview {
+      width: 200px;
+      margin: 10px;
+    }
+
+    .locked-message {
+      margin-top: 40px;
+      color: #e53935;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Helping Hands Foundation</h1>
+    <p>Project and Transparency Dashboard</p>
+  </header>
+
+  <div id="uploadContainer" class="hidden">
+    <section class="upload-section">
+      <h2>Upload Project Photos</h2>
+      <input type="file" id="photoUpload" accept="image/*" multiple />
+      <div class="photos" id="photoGallery"></div>
+
+      <h2>Upload QR Code for Donations</h2>
+      <input type="file" id="qrUpload" accept="image/*" />
+      <div id="qrContainer">
+        <img id="qrPreview" src="" alt="QR Code will appear here">
+      </div>
+    </section>
+  </div>
+
+  <div id="viewerContainer" class="hidden">
+    <section>
+      <h2>Gallery</h2>
+      <div class="photos" id="displayGallery">
+        <img src="https://via.placeholder.com/150" alt="Project 1">
+        <img src="https://via.placeholder.com/150" alt="Project 2">
+      </div>
+    </section>
+
+    <section class="expenses">
+      <h2>Expense History</h2>
+      <ul>
+        <li>₹50,000 - Purchased food supplies</li>
+        <li>₹30,000 - Transport & logistics</li>
+        <li>₹20,000 - Medical kits</li>
+      </ul>
+    </section>
+
+    <section class="donate">
+      <h2>QR Code for Donation</h2>
+      <img src="https://via.placeholder.com/200" alt="NGO QR">
+    </section>
+  </div>
+
+  <div id="lockedMessage" class="locked-message hidden">
+    ⚠️ Access restricted — Only NGO accounts can modify this dashboard.
+  </div>
+
+  <script>
+    // Simulate login role (in real app, this comes from backend or localStorage)
+    // Example: localStorage.setItem('role', 'NGO') or 'Donor'
+    const userRole = localStorage.getItem('role');
+
+    const uploadContainer = document.getElementById('uploadContainer');
+    const viewerContainer = document.getElementById('viewerContainer');
+    const lockedMessage = document.getElementById('lockedMessage');
+
+    // Role-based access control
+    if (userRole === 'NGO') {
+      uploadContainer.classList.remove('hidden');
+      viewerContainer.classList.remove('hidden');
+    } else if (userRole === 'Donor') {
+      viewerContainer.classList.remove('hidden');
+      lockedMessage.classList.remove('hidden');
+    } else {
+      // If user not logged in, redirect to login page
+      window.location.href = 'R2.html';
+    }
+
+    // Handle image uploads (for NGO only)
+    const photoUpload = document.getElementById('photoUpload');
+    const photoGallery = document.getElementById('photoGallery');
+
+    if (photoUpload) {
+      photoUpload.addEventListener('change', (event) => {
+        const files = event.target.files;
+        photoGallery.innerHTML = '';
+        Array.from(files).forEach(file => {
+          const reader = new FileReader();
+          reader.onload = function(e) {
+            const img = document.createElement('img');
+            img.src = e.target.result;
+            photoGallery.appendChild(img);
+          };
+          reader.readAsDataURL(file);
+        });
+      });
+    }
+
+    // Handle QR upload
+    const qrUpload = document.getElementById('qrUpload');
+    const qrPreview = document.getElementById('qrPreview');
+
+    if (qrUpload) {
+      qrUpload.addEventListener('change', (event) => {
+        const file = event.target.files[0];
+        if (file) {
+          const reader = new FileReader();
+          reader.onload = function(e) {
+            qrPreview.src = e.target.result;
+          };
+          reader.readAsDataURL(file);
+        }
+      });
+    }
+  </script>
+</body>
+</html>

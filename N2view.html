@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NGO View | ConnectHub</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      font-family: "Poppins", sans-serif;
+      background: #f1f5f9;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background: #0096c7;
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 2rem;
+    }
+
+    .content {
+      width: 90%;
+      max-width: 1000px;
+      margin: 30px auto;
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      padding: 30px;
+    }
+
+    h2 {
+      color: #0077b6;
+      margin-bottom: 10px;
+    }
+
+    .photos {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .photos img {
+      width: 150px;
+      height: 150px;
+      border-radius: 10px;
+      object-fit: cover;
+    }
+
+    .expenses ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .expenses li {
+      background: #f1f1f1;
+      margin: 8px 0;
+      padding: 10px;
+      border-radius: 8px;
+    }
+
+    .qr-section {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .qr-section img {
+      width: 200px;
+      border: 3px solid #0077b6;
+      border-radius: 10px;
+      padding: 5px;
+    }
+
+    .back-btn {
+      display: block;
+      margin: 20px auto;
+      text-align: center;
+      background: #0077b6;
+      color: white;
+      text-decoration: none;
+      padding: 10px 20px;
+      border-radius: 10px;
+      transition: all 0.3s ease;
+    }
+
+    .back-btn:hover {
+      background: #023e8a;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1 id="ngoName">NGO Details</h1>
+    <p id="ngoDesc"></p>
+  </header>
+
+  <div class="content">
+    <section>
+      <h2>Photos from NGO</h2>
+      <div class="photos" id="photoGallery">
+        <img src="https://via.placeholder.com/150" alt="NGO Work 1">
+        <img src="https://via.placeholder.com/150" alt="NGO Work 2">
+        <img src="https://via.placeholder.com/150" alt="NGO Work 3">
+      </div>
+    </section>
+
+    <section class="expenses">
+      <h2>Expense History</h2>
+      <ul id="expenseList">
+        <li>₹50,000 - Flood Relief Supplies</li>
+        <li>₹30,000 - Shelter Materials</li>
+        <li>₹20,000 - Transportation and Distribution</li>
+      </ul>
+    </section>
+
+    <section class="qr-section">
+      <h2>Donate via QR Code</h2>
+      <img id="qrCode" src="https://via.placeholder.com/200" alt="QR Code">
+    </section>
+
+    <a href="D2.html" class="back-btn">⬅ Back to Requests</a>
+  </div>
+
+  <script>
+
+    const userRole = localStorage.getItem('role');
+    if (userRole !== 'Donor') {
+      window.location.href = 'R2.html';
+    }
+
+    const ngoId = localStorage.getItem('selectedNGO');
+    const ngoName = document.getElementById('ngoName');
+    const ngoDesc = document.getElementById('ngoDesc');
+    const qrCode = document.getElementById('qrCode');
+
+     const ngoData = {
+       helpinghands: {
+         name: "Helping Hands Foundation",
+         desc: "Providing urgent relief in flood-hit Assam.",
+         qr: "https://via.placeholder.com/200/0077b6/ffffff?text=Helping+Hands+QR"
+       },
+      careconnect: {
+        name: "Care Connect",
+        desc: "Empowering underprivileged children in Bihar.",
+        qr: "https://via.placeholder.com/200/0096c7/ffffff?text=Care+Connect+QR"
+      },
+       greenfuture: {
+         name: "Green Future Trust",
+         desc: "Planting trees for a sustainable future.",
+         qr: "https://via.placeholder.com/200/00b4d8/ffffff?text=Green+Future+QR"
+       }
+     };
+
+    if (ngoData[ngoId]) {
+      ngoName.textContent = ngoData[ngoId].name;
+      ngoDesc.textContent = ngoData[ngoId].desc;
+      qrCode.src = ngoData[ngoId].qr;
+    }
+  </script>
+</body>
+</html>

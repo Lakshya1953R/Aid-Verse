@@ -90,8 +90,6 @@
   </div>
 
   <script>
-    // Simulate login role (in real app, this comes from backend or localStorage)
-    // Example: localStorage.setItem('role', 'NGO') or 'Donor'
     const userRole = localStorage.getItem('role');
 
     const uploadContainer = document.getElementById('uploadContainer');
@@ -106,11 +104,11 @@
       viewerContainer.classList.remove('hidden');
       lockedMessage.classList.remove('hidden');
     } else {
-      // If user not logged in, redirect to login page
+      
       window.location.href = 'R2.html';
     }
 
-    // Handle image uploads (for NGO only)
+    
     const photoUpload = document.getElementById('photoUpload');
     const photoGallery = document.getElementById('photoGallery');
 
@@ -130,7 +128,7 @@
       });
     }
 
-    // Handle QR upload
+    
     const qrUpload = document.getElementById('qrUpload');
     const qrPreview = document.getElementById('qrPreview');
 
@@ -149,3 +147,4 @@
   </script>
 </body>
 </html>
+

@@ -93,7 +93,7 @@
 </head>
 <body>
   <div class="role-container">
-    <h1>Welcome to ConnectHub</h1>
+    <h1>Welcome to AidVerse</h1>
     <p>Join hands with us to make a difference. Choose your role to continue:</p>
     <div class="role-buttons">
       <button class="role-btn" onclick="selectRole('Donor')">💚 I'm a Donor</button>
@@ -105,9 +105,9 @@
     function selectRole(role) {
       localStorage.setItem("selectedRole", role);
       if (role === "Donor") {
-        window.location.href = "R2_donor.html";
+        window.location.href = "R_donor.html";
       } else if (role === "NGO") {
-        window.location.href = "R2_ngo.html";
+        window.location.href = "R_ngo.html";
       }
     }
   </script>

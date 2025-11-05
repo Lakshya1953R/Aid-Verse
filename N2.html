@@ -6,38 +6,142 @@
   <title>NGO Dashboard | AidVerse</title>
   <link rel="stylesheet" href="style.css" />
   <style>
+    body {
+      font-family: "Poppins", sans-serif;
+      background: linear-gradient(135deg, #FFF8E1, #FFE082);
+      margin: 0;
+      padding: 0;
+      color: #4E342E;
+    }
+
+    header {
+      background: linear-gradient(135deg, #F9A825, #F57F17);
+      color: white;
+      text-align: center;
+      padding: 25px 10px;
+      border-bottom: 4px solid #FBC02D;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2rem;
+      font-weight: 600;
+    }
+
+    header p {
+      margin: 5px 0 0;
+      font-size: 1rem;
+      color: #FFF8E1;
+    }
+
+    section h2 {
+      color: #5D4037;
+      border-bottom: 3px solid #F9A825;
+      display: inline-block;
+      padding-bottom: 5px;
+      margin-bottom: 15px;
+    }
+
     .upload-section {
       margin: 30px auto;
       width: 90%;
-      max-width: 600px;
-      background: #fff;
-      padding: 20px;
-      border-radius: 12px;
-      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+      max-width: 700px;
+      background: #ffffff;
+      padding: 25px;
+      border-radius: 14px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
     }
 
     input[type="file"] {
       display: block;
       margin: 10px auto;
+      background: #FFFDE7;
+      border: 1px solid #F9A825;
+      border-radius: 6px;
+      padding: 10px;
+      cursor: pointer;
+      transition: 0.2s ease;
+    }
+
+    input[type="file"]:hover {
+      background: #FFF59D;
     }
 
     .photos img {
       margin: 10px;
-      border-radius: 8px;
+      border-radius: 10px;
       width: 150px;
       height: 150px;
       object-fit: cover;
+      border: 2px solid #F9A825;
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+      transition: transform 0.2s;
+    }
+
+    .photos img:hover {
+      transform: scale(1.05);
     }
 
     #qrPreview {
       width: 200px;
-      margin: 10px;
+      margin: 15px;
+      border-radius: 8px;
+      border: 2px solid #F9A825;
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .expenses, .donate {
+      background: #fff;
+      margin: 30px auto;
+      width: 90%;
+      max-width: 700px;
+      padding: 25px;
+      border-radius: 14px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    }
+
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    li {
+      background: #FFF8E1;
+      margin: 8px 0;
+      padding: 10px 15px;
+      border-radius: 8px;
+      border-left: 5px solid #F9A825;
+      font-weight: 500;
+    }
+
+    .donate img {
+      display: block;
+      margin: 20px auto;
+      border-radius: 8px;
+      border: 2px solid #FBC02D;
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
     }
 
     .locked-message {
       margin-top: 40px;
-      color: #e53935;
+      color: #D32F2F;
       font-weight: 600;
+      text-align: center;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 1.5rem;
+      }
+      .upload-section, .expenses, .donate {
+        width: 95%;
+        padding: 20px;
+      }
     }
   </style>
 </head>
@@ -65,8 +169,8 @@
     <section>
       <h2>Gallery</h2>
       <div class="photos" id="displayGallery">
-        <img src="https://via.placeholder.com/150" alt="Project 1">
-        <img src="https://via.placeholder.com/150" alt="Project 2">
+        <img src="charity1.png" alt="Project 1">
+        <img src="charity2.png" alt="Project 2">
       </div>
     </section>
 
@@ -81,12 +185,12 @@
 
     <section class="donate">
       <h2>QR Code for Donation</h2>
-      <img src="https://via.placeholder.com/200" alt="NGO QR">
+      <img src="qr1.jpg" width="200px" height="200px" alt="NGO QR">
     </section>
   </div>
 
   <div id="lockedMessage" class="locked-message hidden">
-    ⚠️ Access restricted — Only NGO accounts can modify this dashboard.
+    Access restricted — Only NGO accounts can modify this dashboard.
   </div>
 
   <script>
@@ -96,7 +200,6 @@
     const viewerContainer = document.getElementById('viewerContainer');
     const lockedMessage = document.getElementById('lockedMessage');
 
-    // Role-based access control
     if (userRole === 'NGO') {
       uploadContainer.classList.remove('hidden');
       viewerContainer.classList.remove('hidden');
@@ -104,11 +207,9 @@
       viewerContainer.classList.remove('hidden');
       lockedMessage.classList.remove('hidden');
     } else {
-      
-      window.location.href = 'R_ngo.html';
+      window.location.href = 'R2.html';
     }
 
-    
     const photoUpload = document.getElementById('photoUpload');
     const photoGallery = document.getElementById('photoGallery');
 
@@ -128,7 +229,6 @@
       });
     }
 
-    
     const qrUpload = document.getElementById('qrUpload');
     const qrPreview = document.getElementById('qrPreview');
 
@@ -147,6 +247,3 @@
   </script>
 </body>
 </html>
-
-
-

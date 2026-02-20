@@ -162,6 +162,13 @@
       <div id="qrContainer">
         <img id="qrPreview" src="" alt="QR Code will appear here">
       </div>
+      <h2>Create Donation Request</h2>
+
+<input id="reqTitle" placeholder="Request Title (eg Flood Relief)">
+<input id="reqAmount" placeholder="Amount Needed (₹)">
+<textarea id="reqPurpose" placeholder="Purpose of funds"></textarea>
+
+<button onclick="createRequest()">Post Request</button>
     </section>
   </div>
 
@@ -213,37 +220,69 @@
     const photoUpload = document.getElementById('photoUpload');
     const photoGallery = document.getElementById('photoGallery');
 
-    if (photoUpload) {
-      photoUpload.addEventListener('change', (event) => {
-        const files = event.target.files;
-        photoGallery.innerHTML = '';
-        Array.from(files).forEach(file => {
-          const reader = new FileReader();
-          reader.onload = function(e) {
-            const img = document.createElement('img');
-            img.src = e.target.result;
-            photoGallery.appendChild(img);
-          };
-          reader.readAsDataURL(file);
-        });
-      });
-    }
+    let uploadedImages = [];
+
+photoUpload.addEventListener('change', (event) => {
+  const files = event.target.files;
+  photoGallery.innerHTML = '';
+  uploadedImages = [];
+
+  Array.from(files).forEach(file => {
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      const img = document.createElement('img');
+      img.src = e.target.result;
+      photoGallery.appendChild(img);
+
+      uploadedImages.push(e.target.result); 
+    };
+    reader.readAsDataURL(file);
+  });
+});
 
     const qrUpload = document.getElementById('qrUpload');
     const qrPreview = document.getElementById('qrPreview');
 
-    if (qrUpload) {
-      qrUpload.addEventListener('change', (event) => {
-        const file = event.target.files[0];
-        if (file) {
-          const reader = new FileReader();
-          reader.onload = function(e) {
-            qrPreview.src = e.target.result;
-          };
-          reader.readAsDataURL(file);
-        }
-      });
-    }
+    let uploadedQR = "";
+
+qrUpload.addEventListener('change', (event) => {
+  const file = event.target.files[0];
+  if (file) {
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      qrPreview.src = e.target.result;
+      uploadedQR = e.target.result; // ⭐ STORE QR
+    };
+    reader.readAsDataURL(file);
+  }
+});
+function createRequest(){
+  const title = document.getElementById("reqTitle").value;
+  const amount = document.getElementById("reqAmount").value;
+  const purpose = document.getElementById("reqPurpose").value;
+
+  if(!title || !amount || !purpose){
+    alert("Please fill all fields");
+    return;
+  }
+
+  const requests = JSON.parse(localStorage.getItem("ngoRequests")) || [];
+
+  const newRequest = {
+    id: Date.now(),
+    title,
+    amount,
+    purpose,
+    images: uploadedImages,
+    qr: uploadedQR
+  };
+
+  requests.push(newRequest);
+
+  localStorage.setItem("ngoRequests", JSON.stringify(requests));
+
+  alert("Donation request created successfully!");
+}
   </script>
 </body>
 </html>
